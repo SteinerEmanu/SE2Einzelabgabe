@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText txtMNumber;
     TextView text_result;
     Socket socketTCP;
-    DataOutputStream dataOut;
     PrintWriter pw;
     String host = "se2-isys.aau.at";
     String host2 = "143.205.174.165";
@@ -33,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_sendNumber = findViewById(R.id.btn_send);
         btn_sendNumber.setOnClickListener(MainActivity.this);
-
-        text_result = findViewById(R.id.txtResult);
     }
 
     @Override
@@ -52,6 +52,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            ServerSocket receiveTCP = new ServerSocket();
+            boolean rec = false;
+            while(!rec) {
+                Socket recSocket = receiveTCP.accept();
+                InputStreamReader inpReader = new InputStreamReader(recSocket.getInputStream());
+                BufferedReader bufReader = new BufferedReader(inpReader);
 
+                text_result = findViewById(R.id.txtResult);
+                text_result.setText(bufReader.readLine());
+                if (!text_result.getText().toString().isEmpty()) rec = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
