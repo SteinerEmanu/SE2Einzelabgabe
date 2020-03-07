@@ -14,8 +14,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtMNumber = findViewById(R.id.txtfNumber);
 
         try {
-            socketTCP = new Socket(host, port);
+            //socketTCP = new Socket(host2, port); // error here
+            socketTCP = new Socket();
+            SocketAddress sadr = new InetSocketAddress(host2, port);
+            socketTCP.connect(sadr); // Exception here IOEX
             pw = new PrintWriter(socketTCP.getOutputStream());
             pw.write(txtMNumber.getText().toString());
             pw.flush();
