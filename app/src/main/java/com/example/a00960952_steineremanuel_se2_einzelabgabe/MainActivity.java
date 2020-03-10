@@ -2,12 +2,15 @@ package com.example.a00960952_steineremanuel_se2_einzelabgabe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,7 +38,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         NetworkActivity networkAct = new NetworkActivity(host, port, txtMNumber.getText().toString());
-        networkAct.execute();
-        this.text_result.setText("Erfolg " + networkAct.getReturnMessage());
+        AsyncTask aTask = networkAct.execute();
+        try {
+            Object waitTillDone = aTask.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.text_result.setText(networkAct.getReturnMessage());
     }
 }
