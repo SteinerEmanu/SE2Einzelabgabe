@@ -12,13 +12,13 @@ import java.net.Socket;
 
 public class NetworkActivity extends AsyncTask {
 
-    Socket skt;
-    BufferedReader dataIn;
-    DataOutputStream dataOut;
-    String host;
-    int port;
-    String message;
-    String retMessage;
+    private Socket skt;
+    private BufferedReader dataIn;
+    private DataOutputStream dataOut;
+    private String host;
+    private String message;
+    private String retMessage;
+    private int port;
 
     public NetworkActivity(String host, int port, String message) {
         this.host = host;
