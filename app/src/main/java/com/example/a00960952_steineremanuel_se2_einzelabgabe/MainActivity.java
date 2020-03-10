@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_sendNumber;
     EditText txtMNumber;
     TextView text_result;
-    TextView txtHeader;
     String host = "143.205.174.165"; // se2-isys.aau.at domain
     int port = 53212;
 
@@ -27,12 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtMNumber = findViewById(R.id.txtfNumber);
         text_result = findViewById(R.id.txtResult);
-        txtHeader = findViewById(R.id.textHeader);
-        txtHeader.setText("Matrikelnummer eingeben:");
-        text_result.setText("Warte auf Antwort...");
 
         btn_sendNumber = findViewById(R.id.btn_send);
-        btn_sendNumber.setText("Abschicken");
         btn_sendNumber.setOnClickListener(MainActivity.this);
     }
 
