@@ -45,7 +45,7 @@ public class NetworkActivity extends AsyncTask {
             Log.e("Error", "IO Exception triggered when connecting to Server.");
         }
 
-        return null;
+        return retMessage;
     }
 
     public String getReturnMessage() {

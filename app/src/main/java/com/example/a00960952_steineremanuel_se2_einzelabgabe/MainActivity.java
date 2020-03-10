@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtMNumber = findViewById(R.id.txtfNumber);
         text_result = findViewById(R.id.txtResult);
+        text_result.setText("Waiting for Server...");
+
         btn_sendNumber = findViewById(R.id.btn_send);
         btn_sendNumber.setOnClickListener(MainActivity.this);
     }
@@ -45,6 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         NetworkActivity networkAct = new NetworkActivity(host, port, txtMNumber.getText().toString());
         networkAct.execute();
-        text_result.setText(networkAct.getReturnMessage());
+        this.text_result.setText(networkAct.getReturnMessage());
     }
 }
