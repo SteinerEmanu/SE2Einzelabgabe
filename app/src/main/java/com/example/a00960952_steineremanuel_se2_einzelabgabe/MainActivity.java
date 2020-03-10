@@ -18,6 +18,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,13 +35,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        txtMNumber = findViewById(R.id.txtfNumber);
+        text_result = findViewById(R.id.txtResult);
         btn_sendNumber = findViewById(R.id.btn_send);
         btn_sendNumber.setOnClickListener(MainActivity.this);
     }
 
     @Override
     public void onClick(View v) {
-        NetworkActivity nA = new NetworkActivity(host, port, btn_sendNumber.getText().toString());
-        
+        NetworkActivity networkAct = new NetworkActivity(host, port, txtMNumber.getText().toString());
+        networkAct.execute();
+        text_result.setText(networkAct.getReturnMessage());
     }
 }
