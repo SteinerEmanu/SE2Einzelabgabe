@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView text_result;
     Socket socketTCP;
     PrintWriter pw;
-    String host = "se2-isys.aau.at";
+    String host = "se2-isys.aau.at"; //Log.dweivw("TAG", "HALLO WELT!");
     String host2 = "143.205.174.165";
     int port = 53212;
 
@@ -45,7 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         try {
             //socketTCP = new Socket(host2, port); // error here
-            socketTCP = new Socket();
+            socketTCP = new Socket(); // Use Threads use hostname IP, Port
+            // InputStream Reader, OutputStreamReader --> readLine() writeBytes(text + "\n")!!!
+            /**
+             * Use IP and Port to connect. Kommunikation über Streams
+             * Server muss wissen dass Verbindung vorbei ist! Enter Taste oder ähnliches
+             * Server nutzt ServerSocket! CLient nur Socket
+             * send request, read reply, close socket
+             * --> BufferedReader for Read? .readLine(). -> writeBytes
+             *
+             */
             SocketAddress sadr = new InetSocketAddress(host2, port);
             socketTCP.connect(sadr); // Exception here IOEX
             pw = new PrintWriter(socketTCP.getOutputStream());
