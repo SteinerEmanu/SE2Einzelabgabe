@@ -36,7 +36,7 @@ public class NetworkActivity extends AsyncTask {
             dataIn = new BufferedReader(new InputStreamReader(skt.getInputStream()));
 
             dataOut.writeBytes(message + "\n");
-            retMessage = dataIn.readLine();
+            this.retMessage = dataIn.readLine();
 
             skt.close();
 
@@ -49,6 +49,7 @@ public class NetworkActivity extends AsyncTask {
     }
 
     public String getReturnMessage() {
-        return retMessage;
+        return this.retMessage;
     }
+
 }

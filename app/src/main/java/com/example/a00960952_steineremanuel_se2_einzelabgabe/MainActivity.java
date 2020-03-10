@@ -3,22 +3,11 @@ package com.example.a00960952_steineremanuel_se2_einzelabgabe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView text_result;
     String host = "143.205.174.165"; // se2-isys.aau.at domain
     int port = 53212;
-//    String host = "se2-isys.aau.at"; //Log.dweivw("TAG", "HALLO WELT!");
+//    String host = "se2-isys.aau.at";
 
 
     @Override
@@ -47,6 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         NetworkActivity networkAct = new NetworkActivity(host, port, txtMNumber.getText().toString());
         networkAct.execute();
-        this.text_result.setText(networkAct.getReturnMessage());
+        this.text_result.setText("Erfolg " + networkAct.getReturnMessage());
     }
 }
