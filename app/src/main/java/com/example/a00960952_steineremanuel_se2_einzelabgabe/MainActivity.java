@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              * new Thread(signature - constructor).start();
              * Thread myThread = new Thread(meineAufgabe);
              * myThread.start();
+             * void join(); Fürs blocking
              */
             SocketAddress sadr = new InetSocketAddress(host2, port);
             socketTCP.connect(sadr); // Exception here IOEX
