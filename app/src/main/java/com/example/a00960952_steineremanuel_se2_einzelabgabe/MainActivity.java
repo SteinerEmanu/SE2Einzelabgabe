@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              * Wichtig Threads! Eigener Thread nur fürs Netzwerk! sonst blockiert es App
              * Erben von der Klasse Thread, Implementieren Runnable <-- schöner!
              * new Thread(signature - constructor).start();
+             * Thread myThread = new Thread(meineAufgabe);
+             * myThread.start();
              */
             SocketAddress sadr = new InetSocketAddress(host2, port);
             socketTCP.connect(sadr); // Exception here IOEX
